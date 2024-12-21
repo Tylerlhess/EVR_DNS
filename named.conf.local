@@ -1,0 +1,11 @@
+zone "badguyty.com" {
+    type master;
+    file "/etc/bind/zones/db.badguyty.com";
+    allow-update { any; };
+};
+
+zone "evr.badguyty.com" {
+    type master;
+    file "/etc/bind/zones/db.badguyty.com";
+    allow-update { any; };
+}; 
