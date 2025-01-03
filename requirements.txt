@@ -1,4 +1,3 @@
-python-ravencoinlib
 ipfshttpclient
 dnspython
 ravenrpc
