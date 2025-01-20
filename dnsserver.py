@@ -18,7 +18,7 @@ class EvermoreWatcher:
         self.rpc = Ravencoin(
             rpc_user,
             rpc_password,
-            host=rpc_host,
+            host="127.0.0.1",
             port=rpc_port
         )
         last_block = self.rpc.getblockcount()
