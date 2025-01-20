@@ -11,12 +11,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install IPFS
-RUN wget https://dist.ipfs.io/go-ipfs/v0.12.0/go-ipfs_v0.12.0_linux-amd64.tar.gz \
-    && tar xvfz go-ipfs_v0.12.0_linux-amd64.tar.gz \
-    && cd go-ipfs \
-    && bash install.sh \
-    && cd .. \
-    && rm -rf go-ipfs*
+# RUN wget https://dist.ipfs.io/go-ipfs/v0.12.0/go-ipfs_v0.12.0_linux-amd64.tar.gz \
+#     && tar xvfz go-ipfs_v0.12.0_linux-amd64.tar.gz \
+#     && cd go-ipfs \
+#     && bash install.sh \
+#     && cd .. \
+#     && rm -rf go-ipfs*
 
 # Create app directory and logs directory
 WORKDIR /app
@@ -24,7 +24,7 @@ RUN mkdir -p /app/logs
 RUN mkdir -p /etc/bind/zones
 
 # Configure BIND
-COPY named.conf.local /etc/bind/
+COdPY named.conf.local /etc/bind/
 COPY named.conf.options /etc/bind/
 COPY zones/db.badguyty.com /etc/bind/zones/
 
@@ -42,13 +42,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY dnsserver.py .
 
 # Initialize IPFS
-RUN ipfs init
+# RUN ipfs init
 
 # Create volumes for IPFS data, logs, and BIND data
 VOLUME ["/root/.ipfs", "/app/logs", "/etc/bind", "/var/cache/bind", "/var/lib/bind"]
 
 # Expose IPFS and DNS ports
-EXPOSE 4001 5001 8080 53/udp 53/tcp
+EXPOSE 5001 8080 53/udp 53/tcp
 
 # Create startup script
 RUN echo '#!/bin/bash\n\
@@ -56,7 +56,7 @@ RUN echo '#!/bin/bash\n\
 named -g &\n\
 \n\
 # Start IPFS daemon\n\
-ipfs daemon --enable-gc &\n\
+# ipfs daemon --enable-gc &\n\
 \n\
 # Wait for services to start\n\
 sleep 5\n\
