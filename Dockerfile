@@ -24,7 +24,7 @@ RUN mkdir -p /app/logs
 RUN mkdir -p /etc/bind/zones
 
 # Configure BIND
-COdPY named.conf.local /etc/bind/
+COPY named.conf.local /etc/bind/
 COPY named.conf.options /etc/bind/
 COPY zones/db.badguyty.com /etc/bind/zones/
 
