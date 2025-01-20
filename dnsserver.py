@@ -218,6 +218,7 @@ def main():
         bind_server=bind_server,
         zone_name=zone_name
     )
+    print("Starting watcher")
     watcher.watch_blocks()
 
 if __name__ == "__main__":
