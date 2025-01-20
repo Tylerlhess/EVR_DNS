@@ -45,6 +45,7 @@ class EvermoreWatcher:
                     last_block = current_block
                 time.sleep(10)  # Wait 10 seconds before checking for new blocks
             except Exception as e:
+                print(type(e), str(e))
                 self.logger.error(f"Error processing block: {str(e)}")
                 
     def process_block(self, block_number):
