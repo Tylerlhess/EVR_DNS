@@ -39,7 +39,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY config.env .
-RUN source config.env
+# RUN source config.env
 # Copy application code
 COPY dnsserver.py .
 
@@ -54,6 +54,7 @@ EXPOSE 4001 5001 8080 53/udp 53/tcp
 
 # Create startup script
 RUN echo '#!/bin/bash\n\
+source config.env\n\
 # Start BIND9\n\
 named -g &\n\
 \n\
