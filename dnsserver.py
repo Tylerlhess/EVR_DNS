@@ -21,6 +21,8 @@ class EvermoreWatcher:
             host=rpc_host,
             port=rpc_port
         )
+        last_block = self.rpc.getblockcount()
+        
         # Connect to local IPFS daemon
         self.ipfs_client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
         self.bind_server = bind_server
