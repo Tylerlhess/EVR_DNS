@@ -16,10 +16,10 @@ class EvermoreWatcher:
     def __init__(self, rpc_user, rpc_password, rpc_host, rpc_port, bind_server, zone_name):
         # Initialize RavenRPC connection
         self.rpc = Ravencoin(
-            rpc_user=rpc_user,
-            rpc_password=rpc_password,
-            rpc_host=rpc_host,
-            rpc_port=rpc_port
+            rpc_user,
+            rpc_password,
+            host=rpc_host,
+            port=rpc_port
         )
         # Connect to local IPFS daemon
         self.ipfs_client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
