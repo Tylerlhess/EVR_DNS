@@ -33,7 +33,10 @@ class EvermoreWatcher:
             raise
         
         # Connect to local IPFS daemon
-        self.ipfs_client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
+        try:
+            ipfs = ipfshttpclient.connect()
+        except:
+            ipfs = ipfshttpclient.connect("/dns/squawker.app/tcp/8080/http")
         self.bind_server = bind_server
         self.zone_name = zone_name
         self.logger = logging.getLogger('EvermoreWatcher')
