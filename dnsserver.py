@@ -19,11 +19,18 @@ class EvermoreWatcher:
         self.rpc = Ravencoin(
             rpc_user,
             rpc_password,
-            host="127.0.0.1",
-            port=rpc_port
+            host=rpc_host,
+            port=rpc_port,
+            protocol='http'
         )
-        print(self.rpc)
-        last_block = self.rpc.getblockcount()
+        
+        try:
+            # Test connection
+            last_block = self.rpc.getblockcount()
+            print(f"Successfully connected to RPC. Current block: {last_block}")
+        except Exception as e:
+            print(f"Failed to connect to RPC: {str(e)}")
+            raise
         
         # Connect to local IPFS daemon
         self.ipfs_client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001')
@@ -206,19 +213,15 @@ def main():
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
     
-    # Configuration from environment variables
-    # rpc_user = os.getenv('RPC_USER')
-    # rpc_password = os.getenv('RPC_PASSWORD')
-    # rpc_host = os.getenv('RPC_HOST')
-    # rpc_port = int(os.getenv('RPC_PORT', '8766'))
     bind_server = os.getenv('BIND_SERVER')
     zone_name = os.getenv('ZONE_NAME')
     
+    # Add default port for Evermore (different from Ravencoin's default 8766)
     watcher = EvermoreWatcher(
         rpc_user=config.RPC_USER,
         rpc_password=config.RPC_PASSWORD,
         rpc_host=config.RPC_HOST,
-        rpc_port=config.RPC_PORT,
+        rpc_port=config.RPC_PORT or 9766,
         bind_server=bind_server,
         zone_name=zone_name
     )
