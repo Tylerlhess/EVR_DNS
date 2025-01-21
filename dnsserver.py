@@ -11,6 +11,7 @@ import dns.update
 import dns.query
 import logging
 import os
+import config
 
 class EvermoreWatcher:
     def __init__(self, rpc_user, rpc_password, rpc_host, rpc_port, bind_server, zone_name):
@@ -205,18 +206,18 @@ def main():
     )
     
     # Configuration from environment variables
-    rpc_user = os.getenv('RPC_USER')
-    rpc_password = os.getenv('RPC_PASSWORD')
-    rpc_host = os.getenv('RPC_HOST')
-    rpc_port = int(os.getenv('RPC_PORT', '8766'))
+    # rpc_user = os.getenv('RPC_USER')
+    # rpc_password = os.getenv('RPC_PASSWORD')
+    # rpc_host = os.getenv('RPC_HOST')
+    # rpc_port = int(os.getenv('RPC_PORT', '8766'))
     bind_server = os.getenv('BIND_SERVER')
     zone_name = os.getenv('ZONE_NAME')
     
     watcher = EvermoreWatcher(
-        rpc_user=rpc_user,
-        rpc_password=rpc_password,
-        rpc_host=rpc_host,
-        rpc_port=rpc_port,
+        rpc_user=config.RPC_USER,
+        rpc_password=config.RPC_PASSWORD,
+        rpc_host=config.RPC_HOST,
+        rpc_port=config.RPC_PORT,
         bind_server=bind_server,
         zone_name=zone_name
     )
