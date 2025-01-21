@@ -222,8 +222,8 @@ def main():
     watcher = EvermoreWatcher(
         rpc_user=config.RPC_USER,
         rpc_password=config.RPC_PASSWORD,
-        rpc_host=config.RPC_HOST,
-        # rpc_port=config.RPC_PORT or 9766,
+        # rpc_host=config.RPC_HOST,
+        rpc_port=config.RPC_PORT or 9766,
         bind_server=bind_server,
         zone_name=zone_name
     )
