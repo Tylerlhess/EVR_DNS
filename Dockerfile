@@ -42,6 +42,7 @@ COPY config.env .
 # RUN source config.env
 # Copy application code
 COPY dnsserver.py .
+COPY config.py .
 
 # Initialize IPFS
 # RUN ipfs init
