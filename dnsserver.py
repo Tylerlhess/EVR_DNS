@@ -49,7 +49,7 @@ class EvermoreWatcher:
     def watch_blocks(self):
         """Watch for new blocks on the Evermore blockchain"""
         last_block = self.rpc.getblockcount()["result"]
-        
+        last_block = 0 # always try the first block to test
         while True:
             try:
                 current_block = self.rpc.getblockcount()["result"]
@@ -65,9 +65,11 @@ class EvermoreWatcher:
                 
     def process_block(self, block_number):
         """Process a single block for DNS-related transactions"""
-        block_hash = self.rpc.getblockhash(block_number)
-        block = self.rpc.getblock(block_hash, 2)  # 2 for verbose transaction data
-        
+        block_hash = self.rpc.getblockhash(block_number)["result"]
+        print(f"Block hash: {block_hash}")
+        block = self.rpc.getblock(block_hash, 2)["result"]  # 2 for verbose transaction data
+        print(f"Block: {block}")
+
         for tx in block['tx']:
             if self.is_dns_transaction(tx):
                 try:
