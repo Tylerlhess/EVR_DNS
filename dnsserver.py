@@ -53,6 +53,8 @@ class EvermoreWatcher:
         while True:
             try:
                 current_block = self.rpc.getblockcount()
+                print(f"Current block: {current_block}")
+                print(f"Last block: {last_block}")
                 if current_block > last_block:
                     self.process_block(current_block)
                     last_block = current_block
