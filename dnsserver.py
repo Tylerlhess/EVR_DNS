@@ -102,9 +102,10 @@ class EvermoreWatcher:
             satori_transfers = []
             
             # Get receiving addresses and check for SATORI transfers
-            for vout in tx['vout']:
-                if 'scriptPubKey' in vout and 'addresses' in vout['scriptPubKey']:
-                    vout_addresses = vout['scriptPubKey']['addresses']
+            try:
+                for vout in tx['vout']:
+                    if 'scriptPubKey' in vout and 'addresses' in vout['scriptPubKey']:
+                        vout_addresses = vout['scriptPubKey']['addresses']
                     
                     # Check for asset transfer
                     if 'asset' in vout:
@@ -116,7 +117,9 @@ class EvermoreWatcher:
                                 'addresses': vout_addresses,
                                 'amount': float(asset_info['amount'])
                             })
-
+            except Exception as e:
+                self.logger.error(f"Error processing transaction: {type(e)} {str(e)}")
+                raise
             # Check if it's a self-transfer of exactly 1 SATORI
             valid_satori_transfer = False
             for transfer in satori_transfers:
