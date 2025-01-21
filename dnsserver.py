@@ -56,8 +56,9 @@ class EvermoreWatcher:
                 print(f"Current block: {current_block}")
                 print(f"Last block: {last_block}")
                 if current_block > last_block:
-                    self.process_block(current_block)
-                    last_block = current_block
+                    self.process_block(last_block + 1)
+                    last_block += 1
+                    continue
                 time.sleep(10)  # Wait 10 seconds before checking for new blocks
             except Exception as e:
                 print(type(e), str(e))
