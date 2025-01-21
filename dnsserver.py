@@ -21,7 +21,7 @@ class EvermoreWatcher:
             rpc_password,
             host=rpc_host,
             port=rpc_port,
-            protocol='http'
+            #protocol='http'
         )
         
         try:
