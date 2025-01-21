@@ -49,7 +49,7 @@ class EvermoreWatcher:
     def watch_blocks(self):
         """Watch for new blocks on the Evermore blockchain"""
         last_block = self.rpc.getblockcount()["result"]
-        last_block = 0 # always try the first block to test
+        last_block -= 1  # always try the first block to test
         while True:
             try:
                 current_block = self.rpc.getblockcount()["result"]
