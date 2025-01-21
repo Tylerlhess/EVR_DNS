@@ -51,7 +51,7 @@ COPY config.py .
 VOLUME ["/root/.ipfs", "/app/logs", "/etc/bind", "/var/cache/bind", "/var/lib/bind"]
 
 # Expose IPFS and DNS ports
-EXPOSE 4001 5001 8080 53/udp 53/tcp
+EXPOSE 4001 5001 8080 53/udp 53/tcp 8819
 
 # Create startup script
 RUN echo '#!/bin/bash\n\

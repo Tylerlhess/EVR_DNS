@@ -14,12 +14,11 @@ import os
 import config
 
 class EvermoreWatcher:
-    def __init__(self, rpc_user, rpc_password, rpc_host, rpc_port, bind_server, zone_name):
+    def __init__(self, rpc_user, rpc_password, rpc_port, bind_server, zone_name):
         # Initialize RavenRPC connection
         self.rpc = Ravencoin(
             rpc_user,
             rpc_password,
-            host=rpc_host,
             port=rpc_port,
             #protocol='http'
         )
@@ -224,7 +223,7 @@ def main():
         rpc_user=config.RPC_USER,
         rpc_password=config.RPC_PASSWORD,
         rpc_host=config.RPC_HOST,
-        rpc_port=config.RPC_PORT or 9766,
+        # rpc_port=config.RPC_PORT or 9766,
         bind_server=bind_server,
         zone_name=zone_name
     )
