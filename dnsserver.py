@@ -91,10 +91,11 @@ class EvermoreWatcher:
             # Get the sending address from vin
             vin_addresses = []
             for vin in tx['vin']:
-                prev_tx = self.rpc.getrawtransaction(vin['txid'], True)
-                vin_vout = prev_tx['vout'][vin['vout']]
-                if 'addresses' in vin_vout['scriptPubKey']:
-                    vin_addresses.extend(vin_vout['scriptPubKey']['addresses'])
+                if 'txid' in vin:
+                    prev_tx = self.rpc.getrawtransaction(vin['txid'], True)
+                    vin_vout = prev_tx['vout'][vin['vout']]
+                    if 'addresses' in vin_vout['scriptPubKey']:
+                        vin_addresses.extend(vin_vout['scriptPubKey']['addresses'])
 
             # Track SATORI transfers
             satori_transfers = []
