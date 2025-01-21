@@ -141,7 +141,7 @@ class EvermoreWatcher:
             return False
 
         except Exception as e:
-            self.logger.error(f"Error checking DNS transaction: {str(e)}")
+            self.logger.error(f"Error checking DNS transaction: {type(e)} {str(e)}")
             return False
         
     def extract_ipfs_hash(self, tx):
